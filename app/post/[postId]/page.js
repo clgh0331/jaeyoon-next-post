@@ -1,16 +1,20 @@
 "use client"
 import useCart from "@/stores/useCart";
+import usePost from "@/stores/usePost";
 
 
 function PostDetail ({ params, searchParams }){
-    // const router = useRouter();
+
     const { postId } = params;
+    const { posts } = usePost();
 
-    const {count } = useCart();
-
+    const post = posts[posts.findIndex((item) => {
+        return item.id === Number(postId);
+    })];
 
     return (
-        <div>{postId}, {count}</div>
+
+        <div>{postId}, {JSON.stringify(post)}</div>
     )
 }
 

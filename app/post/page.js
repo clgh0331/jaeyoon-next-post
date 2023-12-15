@@ -2,6 +2,8 @@
 import Link from "next/link";
 import useCart from "@/stores/useCart";
 import usePost from "@/stores/usePost";
+import Count from "@/app/post/component/count";
+import {useState} from "react";
 
 const PostList = [
     {
@@ -18,38 +20,34 @@ const PostList = [
 
 const Post = () => {
 
-    const addToCart = useCart((state) => state.addToCart);
-    const {count } = useCart();
     const { posts, addPost } = usePost();
+    const [title, setTitle] = useState("");
 
     return (
         <div style={{display: 'flex', flexDirection: 'column'}}>
-            POST
-            <button
-                onClick={() => {
-                    // ADD HERE
-                    // addToCart();
-                    // form data를 생성해서 받아줘야합니다.
-                    addPost({
-                        id: 0,
-                        title: "TEST"
-                    })
-                }}
-            >
-                Add to cart
-            </button>
+            <div style={{display: 'flex', border: "1px solid", padding: 12, flexDirection: 'row'}}>
+                <input value={title} onChange={(e) =>  setTitle(e.target.value)}/>
+                <button
+                    onClick={() => {
+                        addPost({
+                            title: title
+                        })
+                        setTitle("");
+                    }}
+                >
+                    ADD POST
+                </button>
+            </div>
 
             {
-                PostList.map((item, index) => {
+                posts.map((item, index) => {
                     return (
                         <Link href={`/post/${item.id}`}>
-                            {item.title}
+                            [{item.id}] {item.title}
                         </Link>
                     )
                 })
             }
-            <div>{JSON.stringify(posts)}</div>
-            <div>{count}</div>
         </div>
     )
 }

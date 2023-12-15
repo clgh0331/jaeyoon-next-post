@@ -2,7 +2,7 @@
 export default function Home() {
   return (
     <main>
-      d
+      THIS IS HOME
     </main>
   )
 }
