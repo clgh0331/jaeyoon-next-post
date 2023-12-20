@@ -22,20 +22,24 @@ const Post = () => {
 
     const { posts, addPost } = usePost();
     const [title, setTitle] = useState("");
+    const [content, setcontect] = useState("");
 
     return (
         <div style={{display: 'flex', flexDirection: 'column'}}>
             <div style={{display: 'flex', border: "1px solid", padding: 12, flexDirection: 'row'}}>
-                <input value={title} onChange={(e) =>  setTitle(e.target.value)}/>
+                제목 <input value={title} onChange={(e) =>  setTitle(e.target.value)}/>
+                내용 <input value={content} onChange={(e) =>  setcontect(e.target.value)}/>
                 <button
                     onClick={() => {
                         addPost({
-                            title: title
+                            title: title,
+                            content: content
                         })
                         setTitle("");
+                        setcontect("");
                     }}
                 >
-                    ADD POST
+                    글쓰기
                 </button>
             </div>
 
@@ -43,7 +47,7 @@ const Post = () => {
                 posts.map((item, index) => {
                     return (
                         <Link href={`/post/${item.id}`}>
-                            [{item.id}] {item.title}
+                            게시글번호 : [{item.id}] / 제목 : {item.title} / 내용 : {item.content}
                         </Link>
                     )
                 })

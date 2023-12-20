@@ -14,6 +14,18 @@ const usePost = create((set, get) => ({
             ],
             currentPost: state.currentPost + 1
         }
+    )),
+    setPost: (post /* 사용할때 받아오는 매개변수 */) => set((state /* 만약 콜백함수 내부에서 usePost 내의 다른 필드 값을 사용할때 사용*/) => (
+        {
+            
+            //state.deletedArray();
+        }
+    )),
+    editPost: (post /* 사용할때 받아오는 매개변수 */) => set((state /* 만약 콜백함수 내부에서 usePost 내의 다른 필드 값을 사용할때 사용*/) => (
+        {
+            
+            //state.deletedArray();
+        }
     ))
 }));
 
